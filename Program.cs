@@ -20,7 +20,6 @@ botClient.StartReceiving(
     receiverOptions: receiverOptions,
     cancellationToken: cts.Token
 );
-Console.WriteLine("Started.\nPress any key to Eliminate Program");
 async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update,
     CancellationToken cancellationToken)
 {
@@ -54,5 +53,6 @@ Task HandlePollingErrorAsync(ITelegramBotClient botClient, Exception exception,
     Console.WriteLine(ErrorMessage);
     return Task.CompletedTask;
 }
-
+var me = await botClient.GetMeAsync();
+Console.WriteLine($"Start listening for @{me.Username}\nPress any key to Eliminate Program");
 Console.ReadKey();
