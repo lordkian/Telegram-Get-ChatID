@@ -20,7 +20,7 @@ botClient.StartReceiving(
     receiverOptions: receiverOptions,
     cancellationToken: cts.Token
 );
-
+Console.WriteLine("Started.\nPress any key to Eliminate Program");
 async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update,
     CancellationToken cancellationToken)
 {
