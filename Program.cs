@@ -24,6 +24,11 @@ botClient.StartReceiving(
 async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update,
     CancellationToken cancellationToken)
 {
+    if (update.ChannelPost != null)
+    {
+        var chatId2 = update.ChannelPost.Chat.Id;
+        Console.WriteLine($"Received a '{update.ChannelPost.Text}' message in chat {chatId2}.");
+    }
     if (update.Message is not { } message)
         return;
     if (message.Text is not { } messageText)
@@ -33,6 +38,7 @@ async Task HandleUpdateAsync(ITelegramBotClient botClient, Update update,
         chatId: chatId,
         text: "Your chatID: " + chatId,
         cancellationToken: cancellationToken);
+    Console.WriteLine($"Received a '{message.Text}' message in chat {chatId}.");
 }
 
 Task HandlePollingErrorAsync(ITelegramBotClient botClient, Exception exception,
